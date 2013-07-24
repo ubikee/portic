@@ -1,5 +1,0 @@
-package com.rtve.portal.core2.page.repository.spring;
-
-public class PageRepositoryException extends Exception {
-
-}

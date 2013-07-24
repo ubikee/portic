@@ -1,7 +1,0 @@
-package com.rtve.portal.module;
-
-import com.rtve.portal.core2.module.controller.spring.ModuleController;
-
-public class DummyModuleController extends ModuleController<DummyForm> {
-
-}
