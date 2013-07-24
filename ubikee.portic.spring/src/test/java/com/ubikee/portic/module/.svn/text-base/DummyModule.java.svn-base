@@ -1,0 +1,54 @@
+package com.rtve.portal.module;
+
+import com.irtve.portal.core2.Model;
+import com.irtve.portal.core2.module.GenericModule;
+import com.irtve.portal.core2.module.ModuleConfig;
+import com.irtve.portal.core2.module.annotation.Module;
+import com.irtve.portal.core2.module.annotation.ModuleAction;
+import com.irtve.portal.core2.module.annotation.ModuleMode;
+import com.irtve.portal.core2.module.exception.InvalidFormException;
+import com.irtve.portal.core2.module.exception.ModuleActionNotFoundException;
+import com.irtve.portal.core2.module.exception.ModuleModeNotFoundException;
+import com.irtve.portal.core2.module.model.ModuleModel;
+
+
+@Module
+public class DummyModule extends GenericModule<DummyForm> {
+
+	public DummyForm createForm() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getModuleUID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void init(ModuleConfig arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.irtve.portal.core2.module.Module#process(com.irtve.portal.core2.Form,
+	 * java.lang.String)
+	 */
+	public Model process(DummyForm arg0, String arg1) throws InvalidFormException, ModuleModeNotFoundException, ModuleActionNotFoundException {
+		System.out.println(this.getClass().getName());
+		return null;
+	}
+	
+	@ModuleAction("action1")
+	public void doAction1(DummyForm form, ModuleModel model) {
+		// do nothing
+	}
+
+	@ModuleMode(ModuleMode.VIEW)
+	public void doView(ModuleModel model) {
+		// do nothing
+	}
+}

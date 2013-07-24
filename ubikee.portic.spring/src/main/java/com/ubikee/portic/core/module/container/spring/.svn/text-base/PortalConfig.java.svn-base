@@ -1,0 +1,9 @@
+package com.rtve.portal.core2.module.container.spring;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class PortalConfig {
+	
+	
+}

@@ -1,0 +1,69 @@
+package com.irtve.portal.core2.page;
+
+import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.irtve.portal.core2.module.container.ModuleContainer;
+import com.irtve.portal.core2.module.events.ModuleEvent;
+import com.irtve.portal.core2.module.events.ModuleEventHandler;
+import com.irtve.portal.core2.module.exception.InvalidFormException;
+import com.irtve.portal.core2.module.exception.ModuleActionNotFoundException;
+import com.irtve.portal.core2.module.exception.ModuleModeNotFoundException;
+import com.irtve.portal.core2.module.form.Form;
+import com.irtve.portal.core2.module.model.ModuleModel;
+
+/**
+ * 
+ * @author ernesto
+ *
+ */
+public class Page2 implements ModuleEventHandler {
+
+	protected static final Log log = LogFactory.getLog(Page.class);
+	
+	private ModuleContainer moduleContainer;
+
+	private PageDescriptor pageDescriptor;
+	
+	/**
+	 * constructor.
+	 * 
+	 * @param config
+	 */
+	public Page2(PageDescriptor config) {
+		this.pageDescriptor = config;
+		moduleContainer.setModuleEventHandler(this);
+	}
+
+	/**
+	 * 
+	 * @param <FORM>
+	 * @param form
+	 * @return
+	 * @throws InvalidFormException
+	 * @throws ModuleModeNotFoundException
+	 * @throws ModuleActionNotFoundException
+	 */
+	public <FORM extends Form> PageDescriptor process(FORM form) throws InvalidFormException, ModuleModeNotFoundException, ModuleActionNotFoundException {
+		
+		// process the module in action
+		ModuleModel model1 = moduleContainer.processModule(form.getModuleId(), form);
+		
+		// process the modules already unprocessed
+		for (String moduleId : pageDescriptor.modules) {			
+				ModuleModel model2 = moduleContainer.processModule(moduleId, form);
+		}
+		
+		return pageDescriptor;
+	}
+	
+	@Override
+	public void handle(List<ModuleEvent> events) {
+		for (ModuleEvent event : events ) {
+
+		}
+	}
+
+}

@@ -1,0 +1,76 @@
+package com.irtve.portal.core2.module.container;
+
+import java.util.List;
+
+import com.irtve.portal.core2.module.Module;
+import com.irtve.portal.core2.module.descriptor.ModuleDescriptor;
+import com.irtve.portal.core2.module.events.ModuleEvent;
+import com.irtve.portal.core2.module.events.ModuleEventHandler;
+import com.irtve.portal.core2.module.exception.InvalidFormException;
+import com.irtve.portal.core2.module.exception.ModuleActionNotFoundException;
+import com.irtve.portal.core2.module.exception.ModuleModeNotFoundException;
+import com.irtve.portal.core2.module.form.Form;
+import com.irtve.portal.core2.module.model.ModuleModel;
+
+/**
+ * The container is responsible of {@link Module}s life cycle.
+ * 
+ * @author ernesto
+ * 
+ */
+public interface ModuleContainer {
+
+	/**
+	 * 
+	 */
+	void init();
+
+	/**
+	 * 
+	 */
+	void destroy();
+
+	/**
+	 * 
+	 * @return
+	 */
+	List<ModuleDescriptor> modules();
+
+	/**
+	 * 
+	 * @param moduleId
+	 * @return
+	 */
+	<FORM extends Form> Module<FORM> getModule(String moduleId);
+	
+	/**
+	 * 
+	 * @param <FORM>
+	 * @param moduleId
+	 * @param form
+	 * @return
+	 * @throws InvalidFormException
+	 * @throws ModuleModeNotFoundException
+	 * @throws ModuleActionNotFoundException 
+	 */
+	<FORM extends Form> ModuleModel processModule(String moduleId, FORM form) throws InvalidFormException, ModuleModeNotFoundException, ModuleActionNotFoundException;
+
+	/**
+	 * 
+	 * @param events
+	 */
+	void handleModuleEvents(List<ModuleEvent> events);
+
+	/**
+	 * 
+	 * @return
+	 */
+	ModuleEventHandler getModuleEventHandler();
+	
+	/**
+	 * 
+	 * @param moduleEventHandler
+	 */
+	void setModuleEventHandler(ModuleEventHandler moduleEventHandler);
+	
+}

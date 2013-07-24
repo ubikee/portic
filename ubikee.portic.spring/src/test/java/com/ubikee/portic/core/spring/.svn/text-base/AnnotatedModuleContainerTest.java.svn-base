@@ -1,0 +1,30 @@
+package com.rtve.portal.core2.spring;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.irtve.portal.core2.module.annotation.ModuleMode;
+import com.irtve.portal.core2.module.container.ModuleContainer;
+import com.rtve.portal.core2.module.container.spring.AnnotatedModuleContainer;
+import com.rtve.portal.module.DummyForm;
+
+public class AnnotatedModuleContainerTest {
+
+	ModuleContainer container;
+	
+	@Before
+	public void setup() {
+		this.container = new AnnotatedModuleContainer();
+		this.container.init();
+	}
+	
+	@Test
+	public void testProcess() throws Exception {
+		
+		DummyForm form = new DummyForm("dummyModule", "action1", ModuleMode.VIEW);
+		this.container.processModule("dummyModule", form);
+		
+	}
+	
+	
+	
+}

@@ -1,0 +1,29 @@
+package com.irtve.portal.core2.page;
+
+import java.util.List;
+
+/**
+ * 
+ * @author ernesto
+ *
+ */
+@SuppressWarnings("rawtypes")
+public interface PageRepository {
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	Page get(String id);
+	
+	/**
+	 * @return
+	 */
+	List<Page> getAll();
+	
+	/**
+	 * @param page
+	 */
+	void saveOrUpdate(Page page);
+	
+}
